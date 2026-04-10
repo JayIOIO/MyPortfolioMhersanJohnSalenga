@@ -116,42 +116,71 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Contact Form Handling ---
-    const contactForm = document.getElementById('contactForm');
-    const formStatus = document.getElementById('formStatus');
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
 
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form data
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Get form data
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
 
-            // Simple validation
-            if (!name || !email || !subject || !message) {
-                formStatus.textContent = 'Please fill in all fields.';
-                formStatus.className = 'form-status error';
-                return;
-            }
+        // Simple validation
+        if (!name || !email || !subject || !message) {
+            formStatus.textContent = 'Please fill in all fields.';
+            formStatus.className = 'form-status error';
+            return;
+        }
 
-            // Simulate form submission
-            formStatus.textContent = 'Sending message...';
-            formStatus.className = 'form-status';
+        // Simulate form submission
+        formStatus.textContent = 'Sending message...';
+        formStatus.className = 'form-status';
 
-            // In a real scenario, you would use an API or mailto
-            // For this demo, we'll simulate a success after 1.5s
-            setTimeout(() => {
-                formStatus.textContent = 'Thank you! Your message has been sent successfully.';
-                formStatus.className = 'form-status success';
-                contactForm.reset();
+        // EmailJS
+        const serviceID = 'service_ff6gmgh';
+        const templateID = 'template_xqzzv1m';
+        const params = {
+            name: name,
+            email: email,
+            subject: subject,
+            message: message
+        };
+
+        emailjs.send(serviceID, templateID, params)
+            .then(res => {
+                document.getElementById('name').value = "";
+                document.getElementById('email').value = "";
+                document.getElementById('subject').value = "";
+                document.getElementById('message').value = "";
+                console.log(res);
                 
-                // Clear success message after 5 seconds
                 setTimeout(() => {
-                    formStatus.textContent = '';
-                }, 5000);
-            }, 1500);
-        });
-    }
+                    formStatus.textContent = 'Thank you! Your message has been sent successfully.';
+                    formStatus.className = 'form-status success';
+                    contactForm.reset();
+
+                    // Clear success message after 5 seconds
+                    setTimeout(() => {
+                        formStatus.textContent = '';
+                    }, 5000);
+                }, 1500);
+            })
+            .catch(err => {
+                formStatus.textContent = 'Error sending message. Please try again.';
+                formStatus.className = 'form-status error';
+                console.error('EmailJS Error:', err);
+            });
+    });
+
+    // disable button during submission
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+submitBtn.disabled = true;
+submitBtn.disabled = false;
+
+
+        } // end of contact form handling
 });

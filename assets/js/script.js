@@ -34,10 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Typewriter Effect ---
     const typewriterElement = document.getElementById('typewriter');
     const roles = [
+        "Virtual Assistant",
         "Web Developer",
-        "Software Engineer",
-        "Data Scientist",
+        "Previous Selling Partner Support at Amazon",
         "AI Automation Engineer",
+        "Database & Backend Management",
         "Email/Chat Support Specialist"
     ];
     let roleIndex = 0;

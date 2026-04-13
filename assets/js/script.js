@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const roles = [
         "Virtual Assistant",
         "Web Developer",
-        "Previous Selling Partner Support at Amazon",
         "AI Automation Engineer",
         "Database & Backend Management",
         "Email/Chat Support Specialist"

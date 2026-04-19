@@ -34,9 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Typewriter Effect ---
     const typewriterElement = document.getElementById('typewriter');
     const roles = [
-        "Virtual Assistant",
         "Web Developer",
         "AI Automation Engineer",
+        "Graphic Designer",
         "Database & Backend Management",
         "Email/Chat Support Specialist"
     ];

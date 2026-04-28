@@ -37,8 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
         "Web Developer",
         "AI Automation Engineer",
         "Graphic Designer",
-        "Database & Backend Management",
-        "Email/Chat Support Specialist"
+        "Email/Chat Support Specialist",
+        "Database & Backend Management"
     ];
     let roleIndex = 0;
     let charIndex = 0;
